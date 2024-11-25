@@ -443,6 +443,7 @@ std::vector<std::pair<CachedAllNumeric::EvalRet,size_t>> Template::gatherInteres
       for(size_t iv : iv_suffix){
         if(iv >= currTime && ((iv - currTime) <= _limits._maxDistance) && ((iv - currTime) >= _limits._minDistance)){
           ret.push_back(std::make_pair(value,(size_t)iv-currTime));
+          break;
         }
       }
   }

@@ -1,0 +1,42 @@
+<slam>
+
+        <!--
+        -->
+     <!--
+	<context name="Transmission gear 4"> 
+
+		<numeric op="e" clsEffort = "0.01" exp="omega_target" loc="dt"/>
+		<numeric op="ge,le,e" clsEffort = "0.01" exp="omega_trans" loc="dt"/>
+		<numeric op="ge,le,e" clsEffort = "0.01" exp="omega_motor" loc="dt"/>
+
+
+        <template dtLimits="3A,0.1E,100maxd,0mind" exp="G( ..F.. -> F[0,0]gear==4)" />
+
+		<sort name="causality" exp="1-afct/traceLength"/>
+		<sort name="support" exp="atct/traceLength"/>
+	</context>
+
+       
+ -->
+  <!--
+	<context name="speed increasing"> 
+
+		<numeric op="r,le,ge" clsEffort = "0.0001" exp="omega_trans" loc="dt"/>
+		<numeric op="r,le,ge,e" clsEffort = "0.0001" exp="gear" loc="dt"/>
+		<numeric op="e" clsEffort = "0.1" exp="omega_target" loc="dt"/>
+		<numeric op="r,le,ge,e" clsEffort = "0.1" exp="error" loc="dt"/>
+
+
+        <template dtLimits="3A,0.1E,70maxd,0mind" exp="G( ..F.. -> F[0,0]( @(U,1) == 0 ))" />
+
+		<sort name="causality" exp="1-afct/traceLength"/>
+		<sort name="support" exp="atct/traceLength"/>
+        <filter name="causality_filter" threshold="0.9" exp="1-afct/traceLength"/>
+	</context>
+  -->
+
+
+	<context name="Check ass"> 
+	<template check="1" exp="G(F[0,0]((omega_trans <= 10)) && F[0,0]((error < 1) && (error > -1)) && F[0,0]((omega_target == 10))  -> F[0,100]((@(U,1) == 0)))" />
+	</context>
+</slam>

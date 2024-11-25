@@ -1,5 +1,6 @@
 #pragma once
 #include <ostream>
+#include <cstring>
 #include <string>
 template <typename T>
 inline std::string to_string_with_precision(const T a_value, const int n = 6) {
